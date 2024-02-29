@@ -1,0 +1,14 @@
+<h1>Login</h1>
+<label for="userName">Username:</label><br>
+<input type="text" id="userName" name="userName"
+       required minlength ="6" size="10"/><br>
+<label for="passWord">Password:</label><br>
+<input type="text" id="passWord" name="Password"
+       required minlength ="6" size="10"/>
+<script type="text/javascript" src="login.component.ts"></script>
+<button (click)="checkLogin()">Submit</button>
+
+<nav>
+  <a routerLink="/register">Register</a>
+</nav>
+<router-outlet></router-outlet>

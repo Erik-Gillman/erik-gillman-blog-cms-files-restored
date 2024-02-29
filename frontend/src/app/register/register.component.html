@@ -1,0 +1,12 @@
+<h1>Register</h1>
+<label for="userName">Username:</label><br>
+<input type="text" id="userName" name="userName"
+       required minlength ="6" size="10"/><br>
+<label for="passWord">Password (must be at least 6 characters long with at least one number, one uppercase character, and one special character):</label><br>
+<input type="text" id="passWord" name="Password"
+       required minlength ="6" size="10"/>
+<button (click)="createUser()">Submit</button>
+<nav>
+  <a routerLink="/login">Login</a>
+</nav>
+<router-outlet></router-outlet>
