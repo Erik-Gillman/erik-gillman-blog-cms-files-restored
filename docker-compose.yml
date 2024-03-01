@@ -1,6 +1,9 @@
+version: '3.9'
+
 services:
   database:
-    image: "postgres:latest"
+    image: "postgres:alpine3.19"
+    container_name: blog-database
     ports:
       - "5432:5432"
     environment:
@@ -9,3 +12,32 @@ services:
       POSTGRES_DB: postgres
     volumes:
       - ./database/data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U admin -d postgres" ]
+      interval: 3s
+      retries: 15
+
+  backend:
+    container_name: blog-backend
+    build:
+      context: backend/
+    ports:
+      - "8080:8080"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_HOST: postgres
+    depends_on:
+      database:
+        condition: service_healthy
+  frontend:
+    container_name: blog-frontend
+    build:
+      context: frontend/
+    depends_on:
+      database:
+        condition: service_healthy
+    ports:
+    - "4200:80"
+
+
