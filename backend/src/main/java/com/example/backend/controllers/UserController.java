@@ -1,5 +1,7 @@
-package com.example.backend;
+package com.example.backend.controllers;
 
+import com.example.backend.services.UserService;
+import com.example.backend.Users;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -8,10 +10,10 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
-public class UserResource {
+public class UserController {
     private final UserService userService;
 
-    public UserResource(UserService userService) {
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 

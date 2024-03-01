@@ -1,9 +1,9 @@
-package com.example.backend;
+package com.example.backend.services;
 
 import com.example.backend.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.example.backend.UserRepo;
+import com.example.backend.repos.UserRepo;
 
 import java.util.List;
 
