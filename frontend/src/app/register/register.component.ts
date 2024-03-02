@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import {UserService} from "../user.service";
 import {Users} from "../users";
 import {HttpErrorResponse} from "@angular/common/http";
+import {UserActions} from "../_store/user-feature/user.actions";
+import {Store} from "@ngrx/store";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-register',
@@ -10,7 +13,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 })
 export class RegisterComponent {
 
-  constructor(private userService: UserService){}
+  constructor(private userService: UserService, private store: Store, private router: Router, private route: ActivatedRoute){}
   public createUser(){
     const user = document.getElementById('userName') as HTMLInputElement
     const userName = user?.value
@@ -19,7 +22,8 @@ export class RegisterComponent {
     let newUser : Users = {userName: userName, password: password}
     this.userService.addUser(newUser).subscribe(
     (response: Users) => {
-    alert("success");},
+      this.store.dispatch(UserActions.userChange({userName: userName, userId: response.id!, isLogged: true}))
+      this.router.navigate(['../dashboard'], {relativeTo: this.route});},
     (error: HttpErrorResponse) => {
     alert(error.message);
     }

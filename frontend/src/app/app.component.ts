@@ -14,6 +14,6 @@ export class AppComponent {
   public currId = this.store.select(selectUserId)
   public currIsLogged = this.store.select(selectIsLogged)
   constructor(private store: Store){
-
   }
+
 }
