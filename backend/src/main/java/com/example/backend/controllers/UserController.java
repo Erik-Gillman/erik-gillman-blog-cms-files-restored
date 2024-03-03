@@ -44,9 +44,7 @@ public class UserController {
     }
     @PostMapping("/add")
     public ResponseEntity<Users> addUser(@RequestBody Users user) {
-        System.out.println("checkPoint 1");
         Users oldUser = userService.findUserByUserName(user.getUserName());
-        System.out.println("Check point 2");
         if (oldUser == null) {
             Users newUser = userService.addUser(user);
             //add 406 error code (HttpStatus.NOT_ACCEPTABLE)

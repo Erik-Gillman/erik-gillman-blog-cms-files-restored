@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import {UserService} from "../user.service";
 import {Users} from "../users";
 import {HttpErrorResponse} from "@angular/common/http";
-import {Store} from "@ngrx/store";
+import {select, Store} from "@ngrx/store";
 import {UserActions} from "../_store/user-feature/user.actions";
 import {ActivatedRoute, Router} from "@angular/router";
+import {selectIsLogged} from "../_store/user-feature/user.selector";
 
 @Component({
   selector: 'app-login',
@@ -21,6 +22,7 @@ export class LoginComponent {
     this.userService.authUser(userName, password).subscribe(
       (response: Users) => {
         this.store.dispatch(UserActions.userChange({userName: userName, userId: response.id!, isLogged: true}))
+        console.log(this.store.select(selectIsLogged).pipe())
         this.router.navigate(['../dashboard'], {relativeTo: this.route});},
       (error: HttpErrorResponse) => {
         alert(error.message);

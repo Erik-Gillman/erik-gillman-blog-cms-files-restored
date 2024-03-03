@@ -22,6 +22,7 @@ export class RegisterComponent {
     let newUser : Users = {userName: userName, password: password}
     this.userService.addUser(newUser).subscribe(
     (response: Users) => {
+      console.log("Username: ", userName, "UserId: ", response.id)
       this.store.dispatch(UserActions.userChange({userName: userName, userId: response.id!, isLogged: true}))
       this.router.navigate(['../dashboard'], {relativeTo: this.route});},
     (error: HttpErrorResponse) => {

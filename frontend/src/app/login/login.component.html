@@ -4,11 +4,12 @@
        required minlength ="6" size="10"/><br>
 <label for="passWord">Password:</label><br>
 <input type="text" id="passWord" name="Password"
-       required minlength ="6" size="10"/>
+       required minlength ="6" size="10"/><br>
 <script type="text/javascript" src="login.component.ts"></script>
-<button (click)="checkLogin()">Submit</button>
+<button (click)="checkLogin()">Submit</button><br>
 
 <nav>
-  <a routerLink="/register">Register</a>
+  <a class="btn" routerLink="/register">Register</a>
+  <a class="btn" routerLink="/dashboard">Dashboard</a>
 </nav>
 <router-outlet></router-outlet>
