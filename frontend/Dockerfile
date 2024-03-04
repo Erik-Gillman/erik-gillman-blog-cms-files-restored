@@ -1,12 +1,10 @@
-# syntax=docker/dockerfile:1
-FROM node:20-alpine as angular
-WORKDIR /ng-app
-COPY package*.json .
+FROM node:18 as build
+WORKDIR /app
+COPY package*.json ./
 RUN npm install
 COPY . .
 RUN npm run build
 
 FROM nginx:alpine
-ARG name
-COPY --from=angular /ng-app/dist/untitled /usr/share/nginx/html
-
+COPY --from=build /app/dist/untitled /usr/share/nginx/html
+CMD ["nginx", "-g", "daemon off;"]
