@@ -12,7 +12,7 @@ const initState: UserState = {
 
 export const UserReducer = createReducer(
   initState,
-  on(UserActions.userInfoChange, (state, props) => {
+  on(UserActions.userChange, (state, props) => {
     return {
       ...state,
       userName: props.userName,

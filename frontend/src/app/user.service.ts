@@ -17,6 +17,7 @@ export class UserService{
     return this.http.get<Users>(`${this.apiServerUrl}/find/${userName}`)
   }
   public addUser(user: Users): Observable<Users> {
+    alert("made it to call")
     return this.http.post<Users>(`${this.apiServerUrl}/add`, user)
   }
 

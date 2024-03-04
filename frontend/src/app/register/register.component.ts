@@ -12,31 +12,23 @@ import {ActivatedRoute, Router} from "@angular/router";
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  passwordMessage = ""
-  usernameMessage = ""
+
   constructor(private userService: UserService, private store: Store, private router: Router, private route: ActivatedRoute){}
   public createUser(){
-    this.passwordMessage = ""
-    this.usernameMessage = ""
     const user = document.getElementById('userName') as HTMLInputElement
     const userName = user?.value
     const passwordEntry = document.getElementById('passWord') as HTMLInputElement
     const password = passwordEntry?.value
-    if(password.length >= 6 && /[A-Z]/.test(password) && /[0-9]/.test(password) && /[$&+,:;=?@#|'<>.^*()%!-]/.test(password)) {
-      let newUser: Users = {userName: userName, password: password}
-      this.userService.addUser(newUser).subscribe(
-        (response: Users) => {
-          this.store.dispatch(UserActions.userInfoChange({userName: userName, userId: response.id!, isLogged: true}))
-          this.router.navigate(['../dashboard'], {relativeTo: this.route});
-        },
-        (error: HttpErrorResponse) => {
-          this.usernameMessage = "Username already taken"
-        }
-      );
+    let newUser : Users = {userName: userName, password: password}
+    this.userService.addUser(newUser).subscribe(
+    (response: Users) => {
+      console.log("Username: ", userName, "UserId: ", response.id)
+      this.store.dispatch(UserActions.userChange({userName: userName, userId: response.id!, isLogged: true}))
+      this.router.navigate(['../dashboard'], {relativeTo: this.route});},
+    (error: HttpErrorResponse) => {
+    alert(error.message);
     }
-    else{
-      this.passwordMessage = "Invalid password"
-    }
+    );
 
   }
 }

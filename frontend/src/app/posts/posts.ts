@@ -1,10 +1,10 @@
 export interface Posts{
-  postId?: number,
+  UUID: number,
   userId: number,
   title: string,
   content: string,
   createDate: Date,
   lastEdit: Date,
   creator: string,
-  //isComment: boolean
+  isComment: boolean
 }

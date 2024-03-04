@@ -17,28 +17,4 @@ services:
       interval: 3s
       retries: 15
 
-  backend:
-    container_name: blog-backend
-    build:
-      context: backend/
-    ports:
-      - "8080:8080"
-    environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: admin
-      POSTGRES_HOST: postgres
-    depends_on:
-      database:
-        condition: service_healthy
-  frontend:
-    container_name: blog-frontend
-    build:
-      context: frontend/
-    depends_on:
-      database:
-        condition: service_healthy
-    ports:
-      - "4200:80"
-
-
 

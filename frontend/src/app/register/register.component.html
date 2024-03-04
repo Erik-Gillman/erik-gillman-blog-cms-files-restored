@@ -1,13 +1,11 @@
 <h1>Register</h1>
-<p>{{passwordMessage}}</p>
-<p>{{usernameMessage}}</p>
 <label for="userName">Username:</label><br>
 <input type="text" id="userName" name="userName"
        required minlength ="6" size="10"/><br>
 <label for="passWord">Password (must be at least 6 characters long with at least one number, one uppercase character, and one special character):</label><br>
 <input type="text" id="passWord" name="Password"
        required minlength ="6" size="10"/>
-<button (click)="createUser()">Submit</button><br><br>
+<button (click)="createUser()">Submit</button>
 <nav>
   <a class="btn" routerLink="/login">Login</a>
   <a class="btn" routerLink="/dashboard">Dashboard</a>
