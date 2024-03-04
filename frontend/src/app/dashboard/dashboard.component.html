@@ -8,9 +8,13 @@
 <div *ngIf="loggedIn$ | async">
   <p>Success</p>
   <nav>
-    <a class="btn" routerLink="/login">Post</a>
+    <a class="btn" routerLink="/post">Post</a>
     <button class="btn" (click)="logout()">Logout</button><br>
   </nav>
+</div><br>
+<div *ngFor="let post of posts">
+  <span>Title: {{post?.title}}</span><br>
+  <span>{{post?.content}}</span><br>
 </div>
 
 <router-outlet></router-outlet>

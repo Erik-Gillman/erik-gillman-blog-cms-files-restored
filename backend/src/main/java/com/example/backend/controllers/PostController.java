@@ -33,6 +33,7 @@ public class PostController {
 
     @PostMapping("/add")
     public ResponseEntity<Post> addPost(@RequestBody Post post){
+        //System.out.println(post.getTitle()+ post.getContent());
         Post newPost = postService.addPost(post);
         return new ResponseEntity<>(newPost, HttpStatus.CREATED);
     }
@@ -45,5 +46,11 @@ public class PostController {
             return new ResponseEntity<>(HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<Post> updatePost(@RequestBody Post post){
+        Post updatePost = postService.updatePost(post);
+        return new ResponseEntity<>(updatePost, HttpStatus.OK);
     }
 }

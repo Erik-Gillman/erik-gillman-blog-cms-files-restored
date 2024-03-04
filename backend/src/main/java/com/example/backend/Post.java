@@ -15,11 +15,38 @@ public class Post {
     private long postId;
 
     private long userId;
-    private String userName;
     private String title;
     private String content;
     private Date dateCreated;
     private Date lastEdited;
+    private String userName;
 
 
+    public String getTitle() {
+        return title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public long getPostId() {
+        return postId;
+    }
+
+    public Date getDateCreated() {
+        return dateCreated;
+    }
+
+    public Date getLastEdited() {
+        return lastEdited;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
 }
